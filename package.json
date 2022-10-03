@@ -27,6 +27,7 @@
   "author": "Aggelos Bellos <aggelosbellos7@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/shell-quote": "^1.7.1",
     "dotenv": "^16.0.3",
     "es6-promise-polyfill": "^1.2.0",
     "eslint": "^8.24.0",
@@ -38,6 +39,7 @@
     "express-http-proxy": "^1.6.3",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
-    "prettier-eslint-cli": "^7.1.0"
+    "prettier-eslint-cli": "^7.1.0",
+    "shell-quote": "^1.7.3"
   }
 }
