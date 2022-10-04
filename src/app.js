@@ -1,5 +1,6 @@
 import proxy from 'express-http-proxy';
 import express from 'express';
+import path from 'path';
 import { Settings } from './Controllers/Settings.js';
 import { WorkTree } from './Controllers/WorkTree.js';
 
@@ -24,9 +25,9 @@ app.get('*', (req, res, next) => {
     next();
 });
 
-app.use('*', proxy(process.env.PROXY_URL, {
+app.use('*', proxy(process.env.PROXY_DOMAIN, {
     proxyReqPathResolver: function (req) {
-        return req.worktree;
+        return path.join(req.worktree, req.originalUrl);
     }
 }));
 
