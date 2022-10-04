@@ -62,3 +62,8 @@ PROJECT_PARENT_FOLDER=var/www/html/
 
 PROJECT_FOLDER=my-project
 ```
+
+# Roadmap
+- Run git command through special query paramters.
+- Better error validation of commands.
+- Add hooks to add extra functionality through "plugins".
