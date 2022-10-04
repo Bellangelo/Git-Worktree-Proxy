@@ -2,7 +2,7 @@ import { Command } from './Command.js';
 
 export const Git = {
     doesBranchExist(branch) {
-        try{
+        try {
             Command.run(['git', 'show-ref', '--verify', 'refs/heads/' + branch]);
             
             return true;
@@ -12,15 +12,15 @@ export const Git = {
         }
     },
 
-    isBranchFetched() {
-
+    checkoutBranch(branch) {
+        return Command.run(['git', 'checkout', branch])
     },
 
-    installBranch() {
-
+    pull() {
+        return Command.run(['git', 'pull']);
     },
 
-    pullBranch() {
-
+    createWorkTree(branch, path) {
+        return Command.run(['git', 'worktree', 'add', '--track', branch, path]);
     },
 }
