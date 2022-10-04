@@ -6,6 +6,8 @@ import path from 'path';
 
 export const WorkTree = {
     loadNewWorktree(branch) {
+        Git.pull(Settings.PROJECT_FULL_PATH);
+
         if (Git.doesBranchExist(branch, Settings.PROJECT_FULL_PATH)) {
             if (this.doesWorkTreeAlreadyExist(branch)) {
                 return true;
