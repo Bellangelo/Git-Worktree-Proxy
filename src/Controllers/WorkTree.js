@@ -2,14 +2,15 @@ import crypto from 'crypto';
 import fs from 'fs';
 
 import { Git } from './Git.js';
+import { Settings } from './Settings.js';
 
 const md5 = crypto.md5;
 
 export const WorkTree = {
     loadNewWorktree(branch) {
         if (Git.doesBranchExist(branch)) {
-            if (!this.doesWorkTreeAlreadyExist(branhc, '')) {
-                this.createNewWorkTree(branch, '', '');
+            if (!this.doesWorkTreeAlreadyExist(branhc, Settings.PROJECT_FOLDER)) {
+                this.createNewWorkTree(branch, Settings.PROJECT_PARENT_FOLDER, Settings.PROJECT_FOLDER);
             }
         }
     },
