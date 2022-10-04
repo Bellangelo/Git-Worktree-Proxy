@@ -3,13 +3,15 @@
 
 A proxy to run code from specific branches. Simply request `branch-name.example.com` and it will proxy it to the `branch-name` branch. Useful for testing environments to test right away new branches without any other extra work. Furthermore, it doesn't increase resources usages ( except disk space ) as it doesn't load a new container for each branch.
 
-  
+<br/>
+<br/>
 
 # How it works
 
 Behind the scenes the proxy utilises the `git-worktree` to create a different worktree for each new branch you request. After it has created the new worktree it just proxies the request to the correct path. For example, if your project is in `var/html/my-project` and you request the `my-branch.example.com` it will create a new worktree in `var/html/my-project-6d792d6272616e6368` and proxy the request to this folder instead.
 
-  
+<br/>
+<br/>
 
 # How to use it
 
@@ -19,6 +21,9 @@ Behind the scenes the proxy utilises the `git-worktree` to create a different wo
  -- PROJECT_PARENT_FOLDER: Is the full path that your project file 	exists in the server. For example, if your project runs in `/var/html/my-project` then the value would be `/var/html`.
  -- PROJECT_FOLDER: The folder name of your project. For example, if your project runs in `/var/html/my-project` then the value would be `my-project`.
 - Add the server to your `docker-compose.yml` and give access to the volume that your code exists.
+
+<br/>
+<br/>
 
 # Example - PHP + Apache
 Let's say your `docker-compose.yml` contains something like this:
@@ -62,6 +67,9 @@ PROJECT_PARENT_FOLDER=var/www/html/
 
 PROJECT_FOLDER=my-project
 ```
+
+<br/>
+<br/>
 
 # Roadmap
 - Run git command through special query parameters.
