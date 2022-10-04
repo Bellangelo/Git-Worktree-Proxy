@@ -64,6 +64,6 @@ PROJECT_FOLDER=my-project
 ```
 
 # Roadmap
-- Run git command through special query paramters.
+- Run git command through special query parameters.
 - Better error validation of commands.
 - Add hooks to add extra functionality through "plugins".
