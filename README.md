@@ -72,6 +72,7 @@ PROJECT_FOLDER=my-project
 <br/>
 
 # Roadmap
+- Abstract Settings controller from the rest of the controllers by using a constructor.
 - Run git command through special query parameters.
 - Better error validation of commands.
 - Add hooks to add extra functionality through "plugins".
