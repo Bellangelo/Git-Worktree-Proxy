@@ -2,9 +2,11 @@ import { execSync } from 'child_process';
 import { quote } from 'shell-quote';
 
 export const Command = {
-    run(command) {
+    run(command, workingDirectory) {
         command = quote(command);
 
-        return execSync(command).toString();
+        return execSync(command, {
+            cwd: workingDirectory
+        }).toString();
     },
 }

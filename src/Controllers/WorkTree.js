@@ -1,25 +1,35 @@
-import crypto from 'crypto';
 import fs from 'fs';
 
 import { Git } from './Git.js';
 import { Settings } from './Settings.js';
-
-const md5 = crypto.md5;
+import path from 'path';
 
 export const WorkTree = {
     loadNewWorktree(branch) {
-        if (Git.doesBranchExist(branch)) {
-            if (!this.doesWorkTreeAlreadyExist(branhc, Settings.PROJECT_FOLDER)) {
-                this.createNewWorkTree(branch, Settings.PROJECT_PARENT_FOLDER, Settings.PROJECT_FOLDER);
+        if (Git.doesBranchExist(branch, Settings.PROJECT_FULL_PATH)) {
+            if (this.doesWorkTreeAlreadyExist(branch)) {
+                return true;
+            }
+            else {
+                return this.createNewWorkTree(branch);
             }
         }
+
+        return false;
     },
 
-    createNewWorkTree(branch, projectParentFolder, projectFolderName) {
-        const workTreeFolder = this.calculateFolderForWorkTree(branch, projectFolderName);
+    createNewWorkTree(branch) {
+        const workTreeFolder = this.calculateFolderForWorkTree(branch, Settings.PROJECT_FOLDER);
 
-        fs.mkdirSync(workTreeFolder);
-        Git.createWorkTree(branch);
+        Git.createWorkTree(branch, path.join('..', workTreeFolder), Settings.PROJECT_FULL_PATH);
+
+        return path.join(Settings.PROJECT_FULL_PATH, workTreeFolder);
+    },
+
+    doesWorkTreeAlreadyExist(branch) {
+        const workTreeFolder = this.calculateFolderForWorkTree(branch, Settings.PROJECT_FOLDER);
+        
+        return this.doesFolderExist(Settings.PROJECT_PARENT_FOLDER, workTreeFolder);
     },
 
     calculateFolderForWorkTree(branch, projectFolderName) {
@@ -28,9 +38,7 @@ export const WorkTree = {
         return projectFolderName + '-' + branchToHex;
     },
 
-    doesWorkTreeAlreadyExist(branch, projectFolderName) {
-        const workTreeFolder = this.calculateFolderForWorkTree(branch, projectFolderName);
-
-        return fs.existsSync(workTreeFolder);
-    },
+    doesFolderExist(folderPath, folderName) {
+        return fs.existsSync(path.join(folderPath, folderName));
+    }
 }
