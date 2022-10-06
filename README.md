@@ -1,5 +1,5 @@
 
-# Git-Worktree-Server
+# Git-Worktree-Proxy
 
 A proxy to run code from specific branches. Simply request `branch-name.example.com` and it will proxy it to the `branch-name` branch. Useful for testing environments to test right away new branches without any other extra work. Furthermore, it doesn't increase resources usages ( except disk space ) as it doesn't load a new container for each branch.
 
